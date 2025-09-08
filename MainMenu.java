@@ -102,11 +102,19 @@ public class MainMenu {
                 System.out.println(index + ". " + rec);
                 index++;
             }
-            // Show the recommendation graph
-            System.out.println("\nDisplaying recommendation graph...");
-            MovieGraphPopup.showGraph(movieService, recommendations);
+            System.out.print("Do you want to see the graph right now? (Y/N): ");
+            String ans = scanner.nextLine();
+            if (ans.equalsIgnoreCase("y")){
+                Set<String> subGraphMovies = new HashSet<>();
+                subGraphMovies.add(movie);
+                subGraphMovies.addAll(recommendations);
+                MovieGraphPopup.showGraph(movieService, subGraphMovies);;
+        
         }
         pressEnterToContinue();
+    }
+
+
     }
 
     private void recommendByType() {
@@ -132,6 +140,13 @@ public class MainMenu {
             index++;
         }
         pressEnterToContinue();
+
+        System.out.print("Do you want to see the graph right now? (Y/N): ");
+        String ans = scanner.nextLine();
+        if (ans.equalsIgnoreCase("y")){
+            Set<String> subGraphMovies = new HashSet<>(movieService.getMoviesByType(type));
+            MovieGraphPopup.showGraph(movieService, subGraphMovies);;
+        }
     }
 
     private void manageMovieMenu() {
@@ -176,16 +191,22 @@ public class MainMenu {
         System.out.println("Movie added: " + movie + " with types " + types);
     }
 
-    private void showMovieGraph() {
-        System.out.println("Movie -> Types:");
-        for (Map.Entry<String, Set<String>> entry : movieService.getMovieToTypesMap().entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
-        }
-        System.out.println("\nType -> Movies:");
-        for (Map.Entry<String, Set<String>> entry : movieService.getTypeToMoviesMap().entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
-        }
+    private void showMovieGraph(){
+        MovieGraphPopup.showGraph(movieService, movieService.getAllMovies());
     }
+
+    //I just want to remain JY code, in case needed 
+
+    // private void showMovieGraph() {
+    //     System.out.println("Movie -> Types:");
+    //     for (Map.Entry<String, Set<String>> entry : movieService.getMovieToTypesMap().entrySet()) {
+    //         System.out.println(entry.getKey() + " -> " + entry.getValue());
+    //     }
+    //     System.out.println("\nType -> Movies:");
+    //     for (Map.Entry<String, Set<String>> entry : movieService.getTypeToMoviesMap().entrySet()) {
+    //         System.out.println(entry.getKey() + " -> " + entry.getValue());
+    //     }
+    // }
 
     private int getValidIntInput() {
         while (!scanner.hasNextInt()) {
