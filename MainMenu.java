@@ -192,7 +192,6 @@ public class MainMenu {
     }
 
     private void addMovie() {
-        
         System.out.println("\nAvailable movies:");
         if (movieService.isEmpty()) {
             System.out.println("\n[No movies yet]");
