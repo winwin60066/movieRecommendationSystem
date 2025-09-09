@@ -96,13 +96,13 @@ public class MainMenu {
         if (recommendations.isEmpty()) {
             System.out.println("No recommendations found for this movie.");
         } else {
-            System.out.println("Recommended movies with same types:");
+            System.out.println("\nRecommended movies:");
             index = 1;
             for (String rec : recommendations) {
                 System.out.println(index + ". " + rec);
                 index++;
             }
-            System.out.print("Do you want to see the graph right now? (Y/N): ");
+            System.out.print("\nDo you want to display the graph now? (y/n): ");
             String ans = scanner.nextLine();
             if (ans.equalsIgnoreCase("y")){
                 Set<String> subGraphMovies = new HashSet<>();
@@ -124,7 +124,7 @@ public class MainMenu {
             System.out.println(index + ". " + type);
             index++;
         }
-        System.out.print("Enter a type: ");
+        System.out.print("\nEnter a type: ");
         String type = scanner.nextLine();
 
         if (!movieService.typeExists(type)) {
@@ -133,20 +133,20 @@ public class MainMenu {
             return;
         }
 
-        System.out.println("Movies under type '" + type + "':");
+        System.out.println("\nMovies under type '" + type + "':");
         index = 1;
         for (String movie : movieService.getMoviesByType(type)) {
             System.out.println(index + ". " + movie);
             index++;
         }
-        pressEnterToContinue();
 
-        System.out.print("Do you want to see the graph right now? (Y/N): ");
+        System.out.print("\nDo you want to display the graph now? (y/n): ");
         String ans = scanner.nextLine();
         if (ans.equalsIgnoreCase("y")){
             Set<String> subGraphMovies = new HashSet<>(movieService.getMoviesByType(type));
             MovieGraphPopup.showGraph(movieService, subGraphMovies);;
         }
+        pressEnterToContinue();
     }
 
     private void manageMovieMenu() {
@@ -154,7 +154,7 @@ public class MainMenu {
         do {
             System.out.println("\n--- Manage Movie ---");
             System.out.println("[1] Add Movie with Types");
-            System.out.println("[2] Show Movie Graph");
+            System.out.println("[2] Show All Movie Graph");
             System.out.println("[3] Back to Main Menu");
             System.out.println("[0] Exit");
             System.out.print("Enter your choice: ");
@@ -183,7 +183,7 @@ public class MainMenu {
     }
 
     private void addMovie() {
-        System.out.print("Enter movie name: ");
+        System.out.print("\nEnter movie name: ");
         String movie = scanner.nextLine();
         System.out.print("Enter types (comma separated): ");
         List<String> types = Arrays.asList(scanner.nextLine().split(","));
