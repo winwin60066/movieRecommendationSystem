@@ -12,7 +12,8 @@ public class MainMenu {
     public void displayMainMenu() {
         int choice;
         do {
-            System.out.println("\nMOVIE RECOMMENDATION SYSTEM\n");
+            
+            System.out.println("MOVIE RECOMMENDATION SYSTEM\n");
             System.out.println("----- Main Menu -----");
             System.out.println("[1] Recommend Movie");
             System.out.println("[2] Manage Movie");
@@ -29,8 +30,8 @@ public class MainMenu {
                     manageMovieMenu();
                     break;
                 case 0:
+                    
                     System.out.println("Exiting system...");
-                    pressEnterToContinue();
                     System.exit(0);
                 default:
                     System.out.println("\n[Invalid choice, try again]\n");
@@ -40,11 +41,13 @@ public class MainMenu {
 
     private void recommendationMenu() {
         if (movieService.isEmpty()) {
+            
             System.out.println("No movies in the system yet!");
             pressEnterToContinue();
             return;
         }
 
+        
         System.out.println("\n--- Recommend Movie ---");
         System.out.println("[1] Get recommendations by movie name");
         System.out.println("[2] Get recommendations by movie type");
@@ -65,15 +68,16 @@ public class MainMenu {
                 pressEnterToContinue();
                 break;
             case 0:
+                
                 System.out.println("Exiting system...");
-                pressEnterToContinue();
                 System.exit(0);
-                default:
-                    System.out.println("\n[Invalid choice, try again]\n");
+            default:
+                System.out.println("\n[Invalid choice, try again]\n");
         }
     }
 
     private void recommendByMovie() {
+        
         System.out.println("\nAvailable movies:");
         int index = 1;
         for (String movie : movieService.getAllMovies()) {
@@ -104,20 +108,18 @@ public class MainMenu {
             }
             System.out.print("\nDo you want to display the graph now? (y/n): ");
             String ans = scanner.nextLine();
-            if (ans.equalsIgnoreCase("y")){
+            if (ans.equalsIgnoreCase("y")) {
                 Set<String> subGraphMovies = new HashSet<>();
                 subGraphMovies.add(movie);
                 subGraphMovies.addAll(recommendations);
-                MovieGraphPopup.showGraph(movieService, subGraphMovies);;
-        
+                MovieGraphPopup.showGraph(movieService, subGraphMovies);
+            }
         }
         pressEnterToContinue();
     }
 
-
-    }
-
     private void recommendByType() {
+        
         System.out.println("\nAvailable types:");
         int index = 1;
         for (String type : movieService.getAllTypes()) {
@@ -142,9 +144,9 @@ public class MainMenu {
 
         System.out.print("\nDo you want to display the graph now? (y/n): ");
         String ans = scanner.nextLine();
-        if (ans.equalsIgnoreCase("y")){
+        if (ans.equalsIgnoreCase("y")) {
             Set<String> subGraphMovies = new HashSet<>(movieService.getMoviesByType(type));
-            MovieGraphPopup.showGraph(movieService, subGraphMovies);;
+            MovieGraphPopup.showGraph(movieService, subGraphMovies);
         }
         pressEnterToContinue();
     }
@@ -152,10 +154,13 @@ public class MainMenu {
     private void manageMovieMenu() {
         int option;
         do {
+            
             System.out.println("\n--- Manage Movie ---");
             System.out.println("[1] Add Movie with Types");
-            System.out.println("[2] Show All Movie Graph");
-            System.out.println("[3] Back to Main Menu");
+            System.out.println("[2] Remove Movie");
+            System.out.println("[3] Remove Type from Movie");
+            System.out.println("[4] Show Movie Graph");
+            System.out.println("[5] Back to Main Menu");
             System.out.println("[0] Exit");
             System.out.print("Enter your choice: ");
 
@@ -166,15 +171,21 @@ public class MainMenu {
                     addMovie();
                     break;
                 case 2:
-                    showMovieGraph();
+                    removeMovie();
                     break;
                 case 3:
+                    removeTypeFromMovie();
+                    break;
+                case 4:
+                    showMovieGraph();
+                    break;
+                case 5:
                     System.out.println("Back to main menu");
                     pressEnterToContinue();
                     break;
                 case 0:
+                    
                     System.out.println("Exiting system...");
-                    pressEnterToContinue();
                     System.exit(0);
                 default:
                     System.out.println("\n[Invalid choice, try again]\n");
@@ -183,30 +194,102 @@ public class MainMenu {
     }
 
     private void addMovie() {
+        
+        System.out.println("\nAvailable movies:");
+        if (movieService.isEmpty()) {
+            System.out.println("No movies yet.");
+        } else {
+            int index = 1;
+            for (String movie : movieService.getAllMovies()) {
+                System.out.println(index + ". " + movie + ": " + movieService.getTypesByMovie(movie));
+                index++;
+            }
+        }
         System.out.print("\nEnter movie name: ");
         String movie = scanner.nextLine();
+
+        boolean exists = movieService.movieExists(movie);
+
         System.out.print("Enter types (comma separated): ");
-        List<String> types = Arrays.asList(scanner.nextLine().split(","));
+        String input = scanner.nextLine();
+        List<String> types = input.isEmpty() ? new ArrayList<>() : Arrays.asList(input.split(","));
+
         movieService.addMovie(movie, types);
-        System.out.println("Movie added: " + movie + " with types " + types);
+
+        //TODO: test for this add movie that already exists(about merge type)
+        if (exists) {
+            System.out.println("\nSuccessfully added new types to existing movie: " + movie + " (current types: " + movieService.getTypesByMovie(movie) + ")");
+        } else {
+            System.out.println("\nSuccessfully added new movie: " + movie + " with types " + types);
+        }
+        movieService.saveToFile("movies.txt");
+        pressEnterToContinue();
     }
 
-    private void showMovieGraph(){
+    private void removeMovie() {
+        
+        System.out.println("\nAvailable movies:");
+        if (movieService.isEmpty()) {
+            System.out.println("No movies to remove.");
+            pressEnterToContinue();
+            return;
+        }
+        int index = 1;
+        for (String movie : movieService.getAllMovies()) {
+            System.out.println(index + ". " + movie + ": " + movieService.getTypesByMovie(movie));
+            index++;
+        }
+        System.out.print("\nEnter movie name to remove: ");
+        String movie = scanner.nextLine();
+
+        if (!movieService.movieExists(movie)) {
+            System.out.println("Movie not found in the system.");
+        } else {
+            movieService.removeMovie(movie);
+            System.out.println("\nSuccessfully removed movie: " + movie);
+            movieService.saveToFile("movies.txt");
+        }
+        pressEnterToContinue();
+    }
+
+    private void removeTypeFromMovie() {
+        
+        System.out.println("\nAvailable movies:");
+        if (movieService.isEmpty()) {
+            System.out.println("No movies to modify.");
+            pressEnterToContinue();
+            return;
+        }
+        int index = 1;
+        for (String movie : movieService.getAllMovies()) {
+            System.out.println(index + ". " + movie + ": " + movieService.getTypesByMovie(movie));
+            index++;
+        }
+        System.out.print("\nEnter movie name: ");
+        String movie = scanner.nextLine();
+
+        if (!movieService.movieExists(movie)) {
+            System.out.println("Movie not found in the system.");
+            pressEnterToContinue();
+            return;
+        }
+
+        System.out.println("\nTypes for " + movie + ": " + movieService.getTypesByMovie(movie));
+        System.out.print("Enter type to remove: ");
+        String type = scanner.nextLine();
+
+        if (movieService.removeTypeFromMovie(movie, type)) {
+            System.out.println("\nSuccessfully removed type '" + type + "' from movie: " + movie);
+            movieService.saveToFile("movies.txt");
+        } else {
+            System.out.println("Type '" + type + "' not found for movie: " + movie);
+        }
+        pressEnterToContinue();
+    }
+
+    private void showMovieGraph() {
         MovieGraphPopup.showGraph(movieService, movieService.getAllMovies());
     }
-
-    //I just want to remain JY code, in case needed 
-
-    // private void showMovieGraph() {
-    //     System.out.println("Movie -> Types:");
-    //     for (Map.Entry<String, Set<String>> entry : movieService.getMovieToTypesMap().entrySet()) {
-    //         System.out.println(entry.getKey() + " -> " + entry.getValue());
-    //     }
-    //     System.out.println("\nType -> Movies:");
-    //     for (Map.Entry<String, Set<String>> entry : movieService.getTypeToMoviesMap().entrySet()) {
-    //         System.out.println(entry.getKey() + " -> " + entry.getValue());
-    //     }
-    // }
 
     private int getValidIntInput() {
         while (!scanner.hasNextInt()) {

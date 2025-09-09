@@ -23,7 +23,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return name + " (" + types + ")";
+        return name + " : " + types;
     }
 
     @Override
