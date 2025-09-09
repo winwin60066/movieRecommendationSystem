@@ -4,15 +4,19 @@ import java.util.*;
 import java.util.List;
 
 class MovieGraphPanel extends JPanel {
+    private MovieService movieService;
     private Map<String, Point> nodes; // Stores both movie and type nodes
     private List<String[]> edges; // Edges between movies and types
-    //private MovieService movieService; TODO
     private Set<String> recommendedMovies;
     private Set<String> types;
+    private String inputMovie; // The movie entered for movie-based recommendations
+    private String selectedType; // The type entered for type-based recommendations
 
-    public MovieGraphPanel(MovieService movieService, Set<String> recommendedMovies) {
-        //this.movieService = movieService; TODO
+    public MovieGraphPanel(MovieService movieService, Set<String> recommendedMovies, String inputMovie, String selectedType) {
+        this.movieService = movieService;
         this.recommendedMovies = recommendedMovies;
+        this.inputMovie = inputMovie;
+        this.selectedType = selectedType;
         this.nodes = new HashMap<>();
         this.edges = new ArrayList<>();
         this.types = new HashSet<>();
@@ -78,13 +82,17 @@ class MovieGraphPanel extends JPanel {
             }
         }
 
-        // Draw nodes (movies in cyan, types in yellow)
+        // Draw nodes (input movie in red, recommended movies in cyan, selected type in green, other types in yellow)
         for (String node : nodes.keySet()) {
             Point p = nodes.get(node);
-            if (recommendedMovies.contains(node)) {
-                g.setColor(Color.CYAN); // Movie nodes
+            if (node.equals(inputMovie)) {
+                g.setColor(Color.RED); // Input movie node
+            } else if (recommendedMovies.contains(node)) {
+                g.setColor(Color.CYAN); // Recommended movie nodes
+            } else if (node.equals(selectedType)) {
+                g.setColor(Color.GREEN); // Selected type node
             } else {
-                g.setColor(Color.YELLOW); // Type nodes
+                g.setColor(Color.YELLOW); // Other type nodes
             }
             g.fillOval(p.x - 20, p.y - 20, 40, 40);
             g.setColor(Color.BLACK);
@@ -95,11 +103,11 @@ class MovieGraphPanel extends JPanel {
 }
 
 public class MovieGraphPopup {
-    public static void showGraph(MovieService movieService, Set<String> recommendedMovies) {
+    public static void showGraph(MovieService movieService, Set<String> recommendedMovies, String inputMovie, String selectedType) {
         JFrame frame = new JFrame("Movie Recommendation Graph");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(500, 400);
-        frame.add(new MovieGraphPanel(movieService, recommendedMovies));
+        frame.add(new MovieGraphPanel(movieService, recommendedMovies, inputMovie, selectedType));
         frame.setVisible(true);
     }
 }

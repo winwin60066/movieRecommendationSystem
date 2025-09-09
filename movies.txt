@@ -11,5 +11,4 @@ Mr. Bean's Holiday:Comedy
 Toy Story:Animation,Comedy
 ZZZ:Calculator
 The Conjuring:Horror
-Avengers:Action,Drama
 The Conjuring 3:Horror
