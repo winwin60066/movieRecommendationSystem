@@ -83,12 +83,27 @@ class MovieGraphPanel extends JPanel {
         }
 
         // Draw nodes
-        int nodeSize = 10;
-        int nodeCenter = nodeSize/2;
+        int movieNodeSize = 30; // Larger size for movie nodes
+        int typeNodeSize = 20;  // Smaller size for type nodes
+        int movieNodeCenter = movieNodeSize / 2;
+        int typeNodeCenter = typeNodeSize / 2;
+
         for (String node : nodes.keySet()) {
             Point p = nodes.get(node);
+            int nodeSize, nodeCenter;
+            
+            // Determine node size based on whether it's a movie or type
+            if (recommendedMovies.contains(node) || node.equals(inputMovie)) {
+                nodeSize = movieNodeSize;
+                nodeCenter = movieNodeCenter;
+            } else {
+                nodeSize = typeNodeSize;
+                nodeCenter = typeNodeCenter;
+            }
+
+            // Set node color
             if (node.equals(inputMovie)) {
-                g.setColor(Color.RED); // Input movie node
+                g.setColor(Color.GREEN); // Input movie node
             } else if (recommendedMovies.contains(node)) {
                 g.setColor(Color.PINK); // Recommended movie nodes
             } else if (node.equals(selectedType)) {
@@ -96,9 +111,11 @@ class MovieGraphPanel extends JPanel {
             } else {
                 g.setColor(Color.BLUE); // Other type nodes
             }
+
+            // Draw node
             g.fillOval(p.x - nodeCenter, p.y - nodeCenter, nodeSize, nodeSize);
             g.setColor(Color.BLACK);
-            g.drawOval(p.x - nodeCenter, p.y - nodeCenter, nodeSize,nodeSize);
+            g.drawOval(p.x - nodeCenter, p.y - nodeCenter, nodeSize, nodeSize);
             g.drawString(node, p.x - nodeCenter, p.y - nodeCenter - 5);
         }
     }

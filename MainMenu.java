@@ -156,7 +156,7 @@ public class MainMenu {
             System.out.println("[1] Add Movie with Types");
             System.out.println("[2] Remove Movie");
             System.out.println("[3] Remove Type from Movie");
-            System.out.println("[4] Show Movie Graph");
+            System.out.println("[4] Show All Movie Graph");
             System.out.println("[5] Back to Main Menu");
             System.out.println("[0] Exit");
             System.out.print("Enter your choice: ");

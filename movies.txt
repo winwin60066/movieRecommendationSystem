@@ -10,4 +10,3 @@ Mr. Bean's Holiday:Comedy
 The Conjuring:Action,Horror,Drama
 It:Horror
 A Quiet Place:Horror,Drama
-:
