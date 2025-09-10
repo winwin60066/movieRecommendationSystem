@@ -31,7 +31,7 @@ public class MainMenu {
                     break;
                 case 0:
                     
-                    System.out.println("\n[Exiting system...]");
+                    System.out.println("\n[Exiting system...]\n");
                     System.exit(0);
                 default:
                     System.out.println("\n[Invalid choice, try again]\n");
@@ -46,17 +46,14 @@ public class MainMenu {
             pressEnterToContinue();
             return;
         }
-
-        
         System.out.println("\n--- Recommend Movie ---");
         System.out.println("[1] Get recommendations by movie name");
         System.out.println("[2] Get recommendations by movie type");
-        System.out.println("[3] Back");
+        System.out.println("[3] Back to Main Menu");
         System.out.println("[0] Exit");
         System.out.print("Enter your choice: ");
 
         int option = getValidIntInput();
-
         switch (option) {
             case 1:
                 recommendByMovie();
@@ -68,8 +65,7 @@ public class MainMenu {
                 pressEnterToContinue();
                 break;
             case 0:
-                
-                System.out.println("\n[Exiting system...]");
+                System.out.println("\n[Exiting system...]\n");
                 pressEnterToContinue();
                 System.exit(0);
             default:
@@ -95,7 +91,7 @@ public class MainMenu {
         }
 
         Set<String> types = movieService.getTypesByMovie(movie);
-        System.out.println(movie + " belongs to types: " + types);
+        System.out.println("\n" + movie + " belongs to types: " + types);
 
         Set<String> recommendations = movieService.getRecommendationsByMovie(movie);
         if (recommendations.isEmpty()) {
@@ -181,9 +177,11 @@ public class MainMenu {
                     showMovieGraph();
                     break;
                 case 5:
+                    displayMainMenu();
+                    pressEnterToContinue();
                     break;
                 case 0:
-                    System.out.println("\n[Exiting system...]");
+                    System.out.println("\n[Exiting system...]\n");
                     System.exit(0);
                 default:
                     System.out.println("\n[Invalid choice, try again]\n");
@@ -202,14 +200,34 @@ public class MainMenu {
                 index++;
             }
         }
-        System.out.print("\nEnter movie name: ");
-        String movie = scanner.nextLine();
+
+        String movie;
+        do {
+            System.out.print("\nEnter movie name: ");
+            movie = scanner.nextLine().trim();
+            if (movie.isEmpty()) {
+                System.out.println("\n[Movie name cannot be empty, please try again]");
+            }
+        } while (movie.isEmpty());
 
         boolean exists = movieService.movieExists(movie);
 
-        System.out.print("Enter types (comma separated): ");
-        String input = scanner.nextLine();
-        List<String> types = input.isEmpty() ? new ArrayList<>() : Arrays.asList(input.split(","));
+        List<String> types;
+        do {
+            System.out.print("Enter types (comma separated): ");
+            String input = scanner.nextLine().trim();
+            types = new ArrayList<>();
+            if (!input.isEmpty()) {
+                for (String s : input.split("\\s*,\\s*")) { //split and ignore space
+                    if (!s.isEmpty()) {
+                        types.add(s);
+                    }
+                }
+            }
+            if (types.isEmpty()) {
+                System.out.println("\n[At least one valid type must be provided, please try again]");
+            }
+        } while (types.isEmpty());
 
         movieService.addMovie(movie, types);
 
@@ -324,7 +342,7 @@ public class MainMenu {
     }
 
     private void pressEnterToContinue() {
-        System.out.print("\n[Press Enter to continue...]");
+        System.out.print("\n[Press Enter to continue...]\n");
         scanner.nextLine();
     }
 }

@@ -79,6 +79,7 @@ public class MovieService {
         return movieToTypes.getOrDefault(movieName, new HashSet<>());
     }
 
+    //BFS
     public Set<String> getRecommendationsByMovie(String movieName) {
         if (!movieToTypes.containsKey(movieName)) {
             return new HashSet<>();

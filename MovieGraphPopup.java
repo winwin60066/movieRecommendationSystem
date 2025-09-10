@@ -82,22 +82,24 @@ class MovieGraphPanel extends JPanel {
             }
         }
 
-        // Draw nodes (input movie in red, recommended movies in cyan, selected type in green, other types in yellow)
+        // Draw nodes
+        int nodeSize = 10;
+        int nodeCenter = nodeSize/2;
         for (String node : nodes.keySet()) {
             Point p = nodes.get(node);
             if (node.equals(inputMovie)) {
                 g.setColor(Color.RED); // Input movie node
             } else if (recommendedMovies.contains(node)) {
-                g.setColor(Color.CYAN); // Recommended movie nodes
+                g.setColor(Color.PINK); // Recommended movie nodes
             } else if (node.equals(selectedType)) {
                 g.setColor(Color.GREEN); // Selected type node
             } else {
-                g.setColor(Color.YELLOW); // Other type nodes
+                g.setColor(Color.BLUE); // Other type nodes
             }
-            g.fillOval(p.x - 20, p.y - 20, 40, 40);
+            g.fillOval(p.x - nodeCenter, p.y - nodeCenter, nodeSize, nodeSize);
             g.setColor(Color.BLACK);
-            g.drawOval(p.x - 20, p.y - 20, 40, 40);
-            g.drawString(node, p.x - 20, p.y - 25);
+            g.drawOval(p.x - nodeCenter, p.y - nodeCenter, nodeSize,nodeSize);
+            g.drawString(node, p.x - nodeCenter, p.y - nodeCenter - 5);
         }
     }
 }

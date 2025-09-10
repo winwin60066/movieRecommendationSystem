@@ -1,14 +1,13 @@
-Genshin Impact:Silly,Horror,Comedy
+Avengers:Action,Drama
 Iron Man:Action
-The Pursuit of Happyness:Drama
 Gladiator:Action,Drama
-A Quiet Place:Horror,Drama
-It:Horror
-Frozen:Drama,Animation
-Zootopia:Animation,Comedy
 Titanic:Drama
-Mr. Bean's Holiday:Comedy
+The Pursuit of Happyness:Drama
+Frozen:Drama,Animation
 Toy Story:Animation,Comedy
-ZZZ:Calculator
-The Conjuring:Horror
-The Conjuring 3:Horror
+Zootopia:Animation,Comedy
+Mr. Bean's Holiday:Comedy
+The Conjuring:Action,Horror,Drama
+It:Horror
+A Quiet Place:Horror,Drama
+:
