@@ -80,8 +80,12 @@ public class MainMenu {
             System.out.println(index + ". " + movie);
             index++;
         }
-        System.out.print("Enter a movie you like: ");
+        System.out.print("Enter a movie you like (or type 55 to go back): ");
         String movie = scanner.nextLine();
+
+        if (movie.equals("55")) {
+            displayMainMenu();
+        }
 
         if (!movieService.movieExists(movie)) {
             System.out.println("\n[Movie not found in the system]");
@@ -122,8 +126,11 @@ public class MainMenu {
             System.out.println(index + ". " + type);
             index++;
         }
-        System.out.print("\nEnter a type: ");
+        System.out.print("\nEnter a type (or '55' to cancel): ");
         String type = scanner.nextLine();
+        if (type.equals("55")) {
+            displayMainMenu();
+        }
 
         if (!movieService.typeExists(type)) {
             System.out.println("\n[Type not found in the system]");
@@ -202,7 +209,7 @@ public class MainMenu {
 
         String movie;
         do {
-            System.out.print("\nEnter movie name: ");
+            System.out.print("\nEnter movie name (or '55' to cancel): ");
             movie = scanner.nextLine().trim();
             if (movie.isEmpty()) {
                 System.out.println("\n[Movie name cannot be empty, please try again]");
@@ -252,7 +259,7 @@ public class MainMenu {
             System.out.println(index + ". " + movie + ": " + movieService.getTypesByMovie(movie));
             index++;
         }
-        System.out.print("\nEnter movie name to remove: ");
+        System.out.print("\nEnter movie name to remove (or '55' to cancel): ");
         String movie = scanner.nextLine();
 
         if (!movieService.movieExists(movie)) {
@@ -278,7 +285,7 @@ public class MainMenu {
             System.out.println(index + ". " + movie + ": " + movieService.getTypesByMovie(movie));
             index++;
         }
-        System.out.print("\nEnter movie name: ");
+        System.out.print("\nEnter movie name (or '55' to cancel): ");
         String movie = scanner.nextLine();
 
         if (!movieService.movieExists(movie)) {

@@ -23,5 +23,3 @@ Pirates of the Caribbean:Adventure,Fantasy,The Curse of the Black Pearl:Action
 Shutter Island:Drama,Thriller
 The Lion King:Adventure,Drama,Animation
 Finding Nemo:Adventure,Animation,Comedy
-Mad Max:Sci-Fi,Adventure,Fury Road:Action
-55:1
