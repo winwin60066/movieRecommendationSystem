@@ -1,12 +1,27 @@
-Avengers:Action,Drama
-Iron Man:Action
-Gladiator:Action,Drama
-Titanic:Drama
+Avengers:Action,Sci-Fi,Drama
+Iron Man:Action,Sci-Fi
+Gladiator:Action,Adventure,Drama
+Titanic:Drama,Romance
 The Pursuit of Happyness:Drama
-Frozen:Drama,Animation
+Frozen:Adventure,Drama,Animation
 Toy Story:Animation,Comedy
 Zootopia:Animation,Comedy
 Mr. Bean's Holiday:Comedy
-The Conjuring:Action,Horror,Drama
-It:Horror
-A Quiet Place:Horror,Drama
+The Conjuring:Horror,Drama,Thriller
+It:Horror,Thriller
+A Quiet Place:Horror,Drama,Thriller
+Inception:Sci-Fi,Drama,Thriller
+The Dark Knight:Action,Drama,Thriller
+Star Wars: The Force Awakens:Sci-Fi,Action,Adventure
+Jurassic Park:Sci-Fi,Adventure,Thriller
+The Lord of the Rings: The Fellowship of the Ring:Adventure,Drama,Fantasy
+Harry Potter and the Sorcerer's Stone:Adventure,Fantasy
+The Matrix:Sci-Fi,Action,Thriller
+La La Land:Drama,Romance,Comedy
+Interstellar:Sci-Fi,Adventure,Drama
+Pirates of the Caribbean: The Curse of the Black Pearl:Action,Adventure,Fantasy
+Shutter Island:Drama,Thriller
+The Lion King:Adventure,Drama,Animation
+Finding Nemo:Adventure,Animation,Comedy
+Mad Max: Fury Road:Action,Sci-Fi,Adventure
+Forrest Gump:Drama,Romance,Comedy

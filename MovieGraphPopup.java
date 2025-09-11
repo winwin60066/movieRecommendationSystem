@@ -40,10 +40,10 @@ class MovieGraphPanel extends JPanel {
     }
 
     private void positionNodesCircularly() {
-        int centerX = 250; // Center of the panel
-        int centerY = 200;
-        int movieRadius = 150; // Radius for movie nodes
-        int typeRadius = 100;  // Radius for type nodes (inner circle)
+        int centerX = 400; // Center of the panel
+        int centerY = 300;
+        int movieRadius = 250; // Radius for movie nodes
+        int typeRadius = 150;  // Radius for type nodes (inner circle)
         
         // Position movie nodes
         int index = 0;
@@ -71,6 +71,8 @@ class MovieGraphPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        g.setFont(new Font("Arial", Font.PLAIN, 10));
 
         // Draw edges
         g.setColor(Color.BLACK);
@@ -117,6 +119,7 @@ class MovieGraphPanel extends JPanel {
             g.setColor(Color.BLACK);
             g.drawOval(p.x - nodeCenter, p.y - nodeCenter, nodeSize, nodeSize);
             g.drawString(node, p.x - nodeCenter, p.y - nodeCenter - 5);
+
         }
     }
 }
@@ -125,7 +128,7 @@ public class MovieGraphPopup {
     public static void showGraph(MovieService movieService, Set<String> recommendedMovies, String inputMovie, String selectedType) {
         JFrame frame = new JFrame("Movie Recommendation Graph");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(500, 400);
+        frame.setSize(800, 600); //window size
         frame.add(new MovieGraphPanel(movieService, recommendedMovies, inputMovie, selectedType));
         frame.setVisible(true);
     }

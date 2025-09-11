@@ -103,7 +103,7 @@ public class MainMenu {
                 System.out.println(index + ". " + rec);
                 index++;
             }
-            System.out.print("\nDo you want to display the graph now? (y/n): ");
+            System.out.print("\nWould you like to see the graph traversal results? (y/n): ");
             String ans = scanner.nextLine();
             if (ans.equalsIgnoreCase("y")) {
                 Set<String> subGraphMovies = new HashSet<>();
@@ -132,14 +132,14 @@ public class MainMenu {
             return;
         }
 
-        System.out.println("\nMovies under type '" + type + "':");
+        System.out.println("\nRecommended movies under type '" + type + "':");
         index = 1;
         for (String movie : movieService.getMoviesByType(type)) {
             System.out.println(index + ". " + movie);
             index++;
         }
 
-        System.out.print("\nDo you want to display the graph now? (y/n): ");
+        System.out.print("\nWould you like to see the graph traversal results? (y/n): ");
         String ans = scanner.nextLine();
         if (ans.equalsIgnoreCase("y")) {
             Set<String> subGraphMovies = new HashSet<>(movieService.getMoviesByType(type));
