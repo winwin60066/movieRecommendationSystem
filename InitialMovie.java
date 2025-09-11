@@ -35,6 +35,7 @@ public class InitialMovie {
             movieService.addMovie("Finding Nemo", Arrays.asList("Animation", "Comedy", "Adventure"));
             movieService.addMovie("Alien", Arrays.asList("Sci-Fi", "Horror", "Thriller")); 
             movieService.addMovie("Forrest Gump", Arrays.asList("Drama", "Romance", "Comedy"));
+            movieService.addMovie("It", Arrays.asList("Horror", "Thriller"));
             movieService.saveToFile("movies.txt");
 
             movieService.saveToFile(filename);
