@@ -12,11 +12,10 @@ public class MainMenu {
     public void displayMainMenu() {
         int choice;
         do {
-            
             System.out.println("MOVIE RECOMMENDATION SYSTEM\n");
             System.out.println("----- Main Menu -----");
-            System.out.println("[1] Recommend Movie");
-            System.out.println("[2] Manage Movie");
+            System.out.println("[1] Movie Recommendation");
+            System.out.println("[2] Movie Management");
             System.out.println("[0] Exit");
             System.out.print("Enter your choice: ");
 

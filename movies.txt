@@ -12,16 +12,16 @@ It:Horror,Thriller
 A Quiet Place:Horror,Drama,Thriller
 Inception:Sci-Fi,Drama,Thriller
 The Dark Knight:Action,Drama,Thriller
-Star Wars: The Force Awakens:Sci-Fi,Action,Adventure
+Star Wars:Action,Adventure,The Force Awakens:Sci-Fi
 Jurassic Park:Sci-Fi,Adventure,Thriller
-The Lord of the Rings: The Fellowship of the Ring:Adventure,Drama,Fantasy
+The Lord of the Rings:Drama,The Fellowship of the Ring:Adventure,Fantasy
 Harry Potter and the Sorcerer's Stone:Adventure,Fantasy
 The Matrix:Sci-Fi,Action,Thriller
 La La Land:Drama,Romance,Comedy
 Interstellar:Sci-Fi,Adventure,Drama
-Pirates of the Caribbean: The Curse of the Black Pearl:Action,Adventure,Fantasy
+Pirates of the Caribbean:Adventure,Fantasy,The Curse of the Black Pearl:Action
 Shutter Island:Drama,Thriller
 The Lion King:Adventure,Drama,Animation
 Finding Nemo:Adventure,Animation,Comedy
-Mad Max: Fury Road:Action,Sci-Fi,Adventure
-Forrest Gump:Drama,Romance,Comedy
+Mad Max:Sci-Fi,Adventure,Fury Road:Action
+55:1
